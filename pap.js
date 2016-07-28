@@ -34,7 +34,7 @@ $(function() {
 
 			var pep = parseFloat(a * valorDolar);
 			ipep = parseFloat(i * valorDolar);
-			var t = pep + ipep;
+			var t = parseFloat(pep + ipep);
 
 			$('#valor_final').html('$' + pep);
 			$('#impuesto').html('$' + ipep);
