@@ -1,14 +1,14 @@
 $(function() {
 
-	var valorDolar = 15.16;
+	var valorDolar = getDolar();
 	var franquicia = 25;
 
-	$('#valor_dolar').html('COTIZACIÓN DEL DÓLAR $ <span style="color:#d02128">' + valorDolar + '</span>');
+	$('#valor_dolar').html('COTIZACIÓN DEL DÓLAR <span style="color:#d02128">$ ' + valorDolar + '</span>');
 
 	$("#calcular-btn").click(function() {
 
 		var aplicaFranquicia = false;
-		if($('#primera').is(':checked')) {
+		if ($('#primera').is(':checked')) {
 			aplicaFranquicia = true;
 		}
 
@@ -20,20 +20,20 @@ $(function() {
 				alert('El valor total no puede superar los U$$ 1000');
 				return false;
 			}
-						
+
 			if (aplicaFranquicia) {
 				if (a > 25) {
 					i = (a - franquicia);
-					i = i/2;
+					i = i / 2;
 				} else {
 					i = 0;
 				}
 			} else {
 				i = a / 2;
 			}
-			
-			var pep = a*valorDolar;
-			ipep = i*valorDolar;
+
+			var pep = a * valorDolar;
+			ipep = i * valorDolar;
 			var t = parseFloat(pep + ipep);
 
 			$('#valor_final').html('$' + pep);
@@ -46,5 +46,19 @@ $(function() {
 			return false;
 		}
 	})
+	
+	function getDolar() {
+		$.getJSON("http://api-editoriales.clarin.com/api/mercados/monedas?callback=?", function(data) {
+			var items = [];
+			$.each(data, function(key, val) {
+				if (val[0].papel == 'DLRBILL') {
+					var f = val[0].ultimo;
+					return f.replace(',','.');
+				}
+			});
+		});
+		
+		return 15.18;
+	}
 
 });
