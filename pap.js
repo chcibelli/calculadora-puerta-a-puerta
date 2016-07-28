@@ -47,12 +47,4 @@ $(function() {
 		}
 	})
 
-	$("#producto").change(function() {
-		if ($(this).val() > 0) {
-			$('#valor_otro').val($(this).val());
-		} else {
-			$('#valor_otro').val('');
-		}
-	});
-
 });
