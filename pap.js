@@ -42,7 +42,7 @@ $(function() {
 			$('#total').html('$' + t);
 
 		} else {
-			alert("Ingresá el valor total del producto con envío incluido");
+			alert("Ingresá el valor total del producto en dólares");
 			return false;
 		}
 	})
