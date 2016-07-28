@@ -3,7 +3,7 @@ $(function() {
 	var valorDolar = 15.16;
 	var franquicia = 25;
 
-	$('#valor_dolar').html('$' + valorDolar);
+	$('#valor_dolar').html('COTIZACIÓN DEL DÓLAR $ <span style="color:#d02128">' + valorDolar + '</span>');
 
 	$("#calcular-btn").click(function() {
 
