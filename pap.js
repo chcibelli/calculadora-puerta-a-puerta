@@ -32,8 +32,8 @@ $(function() {
 				i = a / 2;
 			}
 
-			var pep = parseFloat(a * valorDolar);
-			ipep = parseFloat(i * valorDolar);
+			var pep = Math.round(a * valorDolar);
+			ipep = Math.round(i * valorDolar);
 			var t = Math.round(pep + ipep);
 
 			$('#valor_final').html('$' + pep);
