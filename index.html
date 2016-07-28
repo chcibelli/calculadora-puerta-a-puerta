@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+	<head>
+		<title>Calculadora de envios puerta a puerta</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<meta http-equiv="Content-Language" content="es" />
+	</head>
+	<body style="background:#F2F2F2">
+		<div class="cont600 l">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<script type="text/javascript" src="pap.js?v=2016072701"></script>
+
+			<style>
+				.notaCalculadora {
+					margin-top: 60px;
+				}
+				.notaCalculadora h1 {
+					font-family: 'Droid Serif';
+					color: #333;
+					font-size: 36px;
+					letter-spacing: -0.05em;
+					font-weight: bold;
+					line-height: 42px;
+				}
+				.notaCalculadora p {
+					font-family: "Roboto", Arial, helvetica, clean, sans-serif;
+					color: #333;
+					font-size: 16px;
+					font-weight: normal;
+					margin: 10px auto;
+				}
+				small {
+					clear: both;
+					color: #777;
+					display: block;
+				}
+				.spacer {
+					height: 20px;
+				}
+				.line {
+					border-bottom: solid 1px gray;
+				}
+				.pad {
+					width: 260px;
+					font-size: 12px;
+					color: gray;
+					padding-left: 9px;
+					margin: 4px 0;
+				}
+				.boxLeft {
+					width: 285px;
+					height: 881px;
+					border-right: 1px solid #ccc;
+					float: left;
+					margin-right: 10px;
+					padding-right: 6px;
+				}
+				.boxRight {
+					width: 256px;
+					float: left;
+					overflow: hidden;
+				}
+				.calculadoraBox {
+					width: 560px;
+					height: 770px;
+					font-size: 13px;
+					background: #F2F2F2;
+					border: 1px solid #d8d8d8;
+					font-family: "Roboto", Arial, helvetica, sans-serif;
+					overflow: hidden;
+					margin-top: 25px;
+					padding: 10px;
+				}
+				.calculadoraBox .box {
+					padding-bottom: 13px;
+					border-bottom: 1px dotted #ccc;
+					margin: 13px 9px;
+				}
+				.calculadoraBox .box {
+					padding-bottom: 13px;
+					border-bottom: 1px dotted #ccc;
+					margin: 13px 9px;
+				}
+				.calculadoraBox .box.check {
+					border: 0 none;
+					clear: both;
+					overflow: hidden;
+				}
+				.calculadoraBox .box.check .label {
+					width: 230px;
+					display: block;
+					float: left;
+					font-size: 14px;
+					line-height: 21px;
+				}
+				.calculadoraBox .box.check > input {
+					float: left;
+					margin-top: 2px;
+					display: inline;
+					width: 18px;
+					height: 16px;
+				}
+				.calculadoraBox .box p {
+					width: 250px;
+					color: #666;
+					font-size: 15px;
+					margin: 0;
+					font-weight: 700;
+				}
+				.calculadoraBox .box input {
+					margin: 8px 0;
+					padding: 6px;
+					width: 250px
+				}
+				.calculadoraBox .box.resultados {
+					border: 0 none;
+				}
+				.calculadoraBox .box.resultados p {
+					font-size: 15px;
+					font-weight: 700;
+					line-height: 18px;
+					margin: 16px 0;
+				}
+				.calculadoraBox .box.resultados em {
+					font-size: 12px;
+				}
+				.calculadoraBox .box.resultados span {
+					width: 218px;
+					background: #fff;
+					color: #D80A38;
+					display: inline-flex;
+					font-size: 23px;
+					font-weight: 700;
+					padding: 9px;
+				}
+				.calculadoraBox .box.resultados span.neto {
+					color: #444;
+				}
+				.calculadoraBox .button {
+					background: #444;
+					border-radius: 21px;
+					color: #fff;
+					cursor: pointer;
+					display: inline-block;
+					font-size: 22px;
+					font-weight: 700;
+					text-align: center;
+					width: 226px;
+					margin: 52px 6px 20px;
+					padding: 14px;
+					height: 34px;
+					line-height: 35px;
+				}
+				.calculadoraBox .button:hover {
+					background-color: #d02128;
+				}
+				.calculadoraBox select.pad {
+					margin: 10px 0;
+					padding: 6px;
+				}
+
+				.calculadoraBox .box.resultados .ig-2016 {
+					border: 1px solid #db464c;
+					margin: 13px 0;
+					padding: 12px 15px;
+					background: #db464c;
+				}
+				.calculadoraBox .box.resultados .ig-2016 span {
+					width: 183px;
+					color: #db464c
+				}
+				.calculadoraBox .box .ig-2016 p {
+					font-size: 19px;
+					width: 170px;
+					color: #f2f2f2;
+				}
+				.calculadoraBox .box.resultados .ig-2016 span.neto {
+					color: #db464c
+				}
+				.calculadoraBox .box.resultados .ig-2016 p {
+					font-size: 19px
+				}
+				.calculadoraBox .box.resultados .dif.ig-2016  span {
+					background: none;
+					color: #fff;
+				}
+			</style>
+			<div class="calculadoraBox">
+				<div class="boxLeft">
+					<div class="box">
+						<select id="producto" class="pad">
+							<option selected="selected" value="0">Otro producto</option>
+							<option value="788">Apple iPhone 6S</option>
+						</select>
+						<p>
+							Elegí un producto de la lista o bien selecciona "Otro producto" e ingresa el valor de compra con envio incluido
+						</p>
+					</div>
+					<div class="box">
+						<input value="" type="text" placeholder="VALOR TOTAL EN U$$ CON ENVIO INCLUIDO" id="valor_otro" size="40">
+						<small>En dólares y con envío incluido</small>
+					</div>
+					<div class="box">
+						<div class="contenBox">
+							<div class="box check" style="display:block">
+								<p class="label l">
+									PRÍMERA COMPRA EN EL AÑO
+								</p>
+								<input class="l" type="checkbox" value="1" id="primera">
+							</div>
+
+						</div>
+						<a class="button" id="calcular-btn">CALCULAR</a>
+					</div>
+				</div>
+				<div class="boxRight">
+
+					<div class="box resultados">
+						<p style="display:block">
+							COTIZACIÓN DEL DÓLAR
+						</p>
+						<span style="display:block" id="valor_dolar">$</span>
+
+						<p>
+							PRODUCTO + ENVIO EN $:
+						</p>
+						<span id="valor_final">$</span>
+						<div class="box-2015">
+							<p>
+								IMPUESTOS EN $:
+							</p>
+							<span class="neto" id="impuesto">$</span>
+						</div>
+						<div class="box-2016 ig-2016">
+							<p>
+								TOTAL A PAGAR:
+							</p>
+							<span class="neto" id="total">$</span>
+						</div>
+
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
